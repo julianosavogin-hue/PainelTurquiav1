@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#110d0f">
+<title>Tropa da Turquia | Gestão</title>
+<style>
+:root{--bg:#100d0f;--panel:#191316;--panel2:#21191d;--line:#38252b;--red:#e52d46;--red2:#a91d32;--text:#f7f2f3;--muted:#b9a9ad;--green:#54c995}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,Arial,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.layout{min-height:100vh;display:grid;grid-template-columns:245px 1fr}
+aside{background:#151013;border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;gap:22px}
+.brand{display:flex;align-items:center;gap:12px;padding:4px 6px}.brand img{width:52px;height:52px;object-fit:contain;border-radius:10px}.logo-fallback{width:52px;height:52px;border-radius:10px;background:#390b14;color:#ff5268;display:grid;place-items:center;font-weight:900;font-size:21px}
+.brand strong{display:block;letter-spacing:.06em;font-size:13px}.brand small{color:var(--muted);font-size:10px;letter-spacing:.12em}
+nav{display:grid;gap:7px}nav button{border:0;text-align:left;padding:12px 13px;border-radius:9px;color:var(--muted);background:transparent}nav button.active,nav button:hover{background:#35151d;color:white}nav button span{display:inline-block;width:25px}
+.side-note{margin-top:auto;color:#806f74;font-size:11px;padding:8px}
+main{padding:28px clamp(16px,4vw,48px);max-width:1500px;width:100%;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:28px}.eyebrow{color:#e87888;font-size:11px;letter-spacing:.16em;font-weight:700}.top h1{font-size:clamp(22px,3vw,30px);margin:3px 0}.date{color:var(--muted);font-size:12px}
+.page{display:none}.page.active{display:block}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:22px 0 15px}.section-head h2{margin:0;font-size:20px}.section-head p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:17px}.metric-label{color:var(--muted);font-size:12px}.metric{font-size:25px;font-weight:750;margin-top:7px;letter-spacing:-.03em}.metric-sub{font-size:11px;color:#8f7e83;margin-top:3px}
+.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:15px}.panel h3{margin:0 0 13px;font-size:15px}.muted{color:var(--muted)}.small{font-size:12px}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}label{font-size:12px;color:#d8cbd0}input,select,textarea{width:100%;border:1px solid #49333a;background:#100d0f;color:white;border-radius:8px;padding:11px 12px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--red)}textarea{min-height:76px;resize:vertical}
+.btn{border:0;border-radius:8px;background:var(--red);color:white;padding:11px 15px;font-weight:700}.btn:hover{background:#f0445c}.btn.secondary{background:#302329;border:1px solid #50323b}.btn.danger{background:#5a1b27}.actions{display:flex;gap:8px;flex-wrap:wrap}.field.full.actions{display:flex;align-items:center}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{color:#c9b9be;font-size:11px;text-transform:uppercase;letter-spacing:.06em}td{color:#f0e8ea}.empty{text-align:center;color:var(--muted);padding:25px}
+.pill{display:inline-block;border-radius:30px;padding:3px 8px;font-size:10px;background:#342028;color:#f29aaa}.bar{height:8px;border-radius:20px;background:#38272d;overflow:hidden}.bar i{display:block;height:100%;background:var(--red);width:0}
+.product-list{display:grid;gap:10px}.product-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:12px;background:var(--panel2);border-radius:9px}
+.notice{padding:12px 14px;border:1px solid #61404a;background:#21171b;color:#d9c6cb;border-radius:9px;font-size:12px;margin:15px 0}
+@media(max-width:900px){.layout{grid-template-columns:1fr}aside{padding:12px 14px;border-right:0;border-bottom:1px solid var(--line)}.brand{padding:0}nav{display:flex;overflow:auto}nav button{white-space:nowrap;padding:9px 11px}.side-note{display:none}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}}
+@media(max-width:520px){main{padding:20px 13px}.cards{gap:8px}.card{padding:13px}.metric{font-size:21px}form{grid-template-columns:1fr}.field.full{grid-column:auto}.product-row{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div class="brand">
+    <img src="logo.png" alt="Logo Tropa da Turquia" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+    <div class="logo-fallback" style="display:none">TT</div>
+    <div><strong>TROPA DA TURQUIA</strong><small>PAINEL DE GESTÃO • RP</small></div>
+  </div>
+  <nav id="nav">
+    <button class="active" data-page="dashboard"><span>▦</span>Visão geral</button>
+    <button data-page="lancamentos"><span>＋</span>Lançamentos</button>
+    <button data-page="turnos"><span>◷</span>Turnos</button>
+    <button data-page="producao"><span>▤</span>Planejamento</button>
+    <button data-page="financeiro"><span>◈</span>Financeiro</button>
+    <button data-page="historico"><span>☷</span>Histórico</button>
+    <button data-page="config"><span>⚙</span>Configurações</button>
+  </nav>
+  <div class="side-note">VERSÃO INICIAL • DADOS NESTE NAVEGADOR</div>
+</aside>
+<main>
+  <header class="top"><div><div class="eyebrow">SISTEMA ADMINISTRATIVO</div><h1 id="pageTitle">Visão geral</h1><div class="date" id="today"></div></div><span class="pill">AMBIENTE RP</span></header>
+
+  <section class="page active" id="dashboard">
+    <div class="cards">
+      <div class="card"><div class="metric-label">Entradas registradas</div><div class="metric" id="mRevenue">R$ 0</div><div class="metric-sub">Total lançado</div></div>
+      <div class="card"><div class="metric-label">Custos registrados</div><div class="metric" id="mCost">R$ 0</div><div class="metric-sub">Conforme lançamentos</div></div>
+      <div class="card"><div class="metric-label">Saldo estimado</div><div class="metric" id="mBalance">R$ 0</div><div class="metric-sub">Entradas menos custos</div></div>
+      <div class="card"><div class="metric-label">Unidades vendidas</div><div class="metric" id="mSold">0</div><div class="metric-sub">Quantidade registrada</div></div>
+    </div>
+    <div class="grid2">
+      <div class="panel"><h3>Resumo por turno</h3><div id="shiftSummary"></div></div>
+      <div class="panel"><h3>Últimos lançamentos</h3><div id="recent"></div></div>
+    </div>
+    <div class="notice">Esta versão é um protótipo local para registrar a economia fictícia do GTA RP. Os dados ficam salvos apenas neste navegador; para vários gerentes acessarem os mesmos dados será necessário publicar o site e conectar um banco de dados com autenticação.</div>
+  </section>
+
+  <section class="page" id="lancamentos">
+    <div class="section-head"><div><h2>Novo lançamento</h2><p>Registre os números do turno e o responsável.</p></div></div>
+    <div class="panel">
+      <form id="entryForm">
+        <div class="field"><label for="manager">Gerente responsável</label><input id="manager" required placeholder="Nome do gerente"></div>
+        <div class="field"><label for="shift">Turno</label><select id="shift"><option>Manhã</option><option>Tarde</option><option>Noite</option></select></div>
+        <div class="field"><label for="product">Categoria / item do jogo</label><select id="product"><option>G3</option><option>MP5</option><option>TEC-9</option><option>Outro</option></select></div>
+        <div class="field"><label for="date">Data do registro</label><input id="date" type="date" required></div>
+        <div class="field"><label for="planned">Quantidade planejada</label><input id="planned" type="number" min="0" step="1" value="0" required></div>
+        <div class="field"><label for="sold">Quantidade vendida</label><input id="sold" type="number" min="0" step="1" value="0" required></div>
+        <div class="field"><label for="unitCost">Custo unitário registrado (R$ do jogo)</label><input id="unitCost" type="number" min="0" step="0.01" value="0" required></div>
+        <div class="field"><label for="unitPrice">Valor unitário de venda (R$ do jogo)</label><input id="unitPrice" type="number" min="0" step="0.01" value="0" required></div>
+        <div class="field full"><label for="notes">Observações</label><textarea id="notes" placeholder="Observações administrativas do turno"></textarea></div>
+        <div class="field full actions"><button class="btn" type="submit">Salvar lançamento</button><button class="btn secondary" type="reset">Limpar</button></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="page" id="turnos">
+    <div class="section-head"><div><h2>Desempenho por turno</h2><p>Visão coletiva, sem metas individuais de gerente.</p></div></div>
+    <div class="cards" id="shiftCards"></div>
+  </section>
+
+  <section class="page" id="producao">
+    <div class="section-head"><div><h2>Planejamento</h2><p>Compare o planejado com o registrado nos lançamentos.</p></div></div>
+    <div class="panel"><div id="planning"></div></div>
+  </section>
+
+  <section class="page" id="financeiro">
+    <div class="section-head"><div><h2>Financeiro</h2><p>Resumo contábil dos valores informados no jogo.</p></div></div>
+    <div class="cards">
+      <div class="card"><div class="metric-label">Faturamento registrado</div><div class="metric" id="fRevenue">R$ 0</div></div>
+      <div class="card"><div class="metric-label">Custo associado ao planejado</div><div class="metric" id="fCost">R$ 0</div></div>
+      <div class="card"><div class="metric-label">Resultado estimado</div><div class="metric" id="fResult">R$ 0</div></div>
+      <div class="card"><div class="metric-label">Registros</div><div class="metric" id="fCount">0</div></div>
+    </div>
+    <div class="notice">O resultado é uma estimativa simples: faturamento lançado menos custo unitário multiplicado pela quantidade planejada. Despesas adicionais e retiradas de caixa ainda não estão incluídas.</div>
+  </section>
+
+  <section class="page" id="historico">
+    <div class="section-head"><div><h2>Histórico</h2><p>Todos os lançamentos feitos neste navegador.</p></div><button class="btn secondary" id="exportBtn">Exportar CSV</button></div>
+    <div class="panel" style="overflow:auto"><table><thead><tr><th>Data</th><th>Turno</th><th>Gerente</th><th>Item</th><th>Planejado</th><th>Vendido</th><th>Faturamento</th><th></th></tr></thead><tbody id="historyBody"></tbody></table></div>
+  </section>
+
+  <section class="page" id="config">
+    <div class="section-head"><div><h2>Configurações</h2><p>Identidade e dados deste protótipo.</p></div></div>
+    <div class="panel">
+      <h3>Logo da organização</h3><p class="muted small">Coloque o arquivo da sua logo na mesma pasta deste HTML e nomeie-o como <b>logo.png</b>. Ela aparecerá automaticamente no menu.</p>
+      <h3 style="margin-top:24px">Backup dos dados</h3><p class="muted small">Use “Exportar CSV” no Histórico para guardar uma cópia dos lançamentos.</p>
+      <button class="btn danger" id="clearBtn">Apagar dados deste navegador</button>
+    </div>
+  </section>
+</main>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const money=n=>Number(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const today=new Date(); $('today').textContent=today.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+$('date').value=new Date().toISOString().slice(0,10);
+let entries=[];
+try{entries=JSON.parse(localStorage.getItem('tt_rp_entries')||'[]')}catch(e){entries=[]}
+const save=()=>localStorage.setItem('tt_rp_entries',JSON.stringify(entries));
+const total=(arr,fn)=>arr.reduce((s,x)=>s+fn(x),0);
+function render(){
+ const revenue=total(entries,e=>e.sold*e.unitPrice),cost=total(entries,e=>e.planned*e.unitCost),sold=total(entries,e=>e.sold);
+ $('mRevenue').textContent=money(revenue);$('mCost').textContent=money(cost);$('mBalance').textContent=money(revenue-cost);$('mSold').textContent=sold.toLocaleString('pt-BR');
+ $('fRevenue').textContent=money(revenue);$('fCost').textContent=money(cost);$('fResult').textContent=money(revenue-cost);$('fCount').textContent=entries.length;
+ const shifts=['Manhã','Tarde','Noite'];
+ $('shiftSummary').innerHTML=shifts.map(s=>{const a=entries.filter(e=>e.shift===s),v=total(a,e=>e.sold*e.unitPrice);return `<div style="margin:13px 0"><div style="display:flex;justify-content:space-between"><b>${s}</b><span>${money(v)}</span></div><div class="bar"><i style="width:${revenue?Math.min(100,v/revenue*100):0}%"></i></div><div class="muted small">${total(a,e=>e.sold)} unidades • ${a.length} lançamentos</div></div>`}).join('');
+ $('recent').innerHTML=entries.length?entries.slice(0,5).map(e=>`<div style="padding:9px 0;border-bottom:1px solid var(--line)"><b>${e.product}</b> <span class="muted small">• ${e.shift}</span><div class="muted small">${escapeHtml(e.manager)} — ${e.sold} vendidos — ${money(e.sold*e.unitPrice)}</div></div>`).join(''):'<div class="empty">Nenhum lançamento ainda.</div>';
+ $('shiftCards').innerHTML=shifts.map(s=>{const a=entries.filter(e=>e.shift===s);return `<div class="card"><div class="metric-label">Turno ${s}</div><div class="metric">${total(a,e=>e.sold)} <span class="muted small">vendidos</span></div><div class="metric-sub">${money(total(a,e=>e.sold*e.unitPrice))} • ${a.length} registros</div></div>`}).join('');
+ const products=['G3','MP5','TEC-9','Outro'];
+ $('planning').innerHTML=products.map(p=>{const a=entries.filter(e=>e.product===p),pl=total(a,e=>e.planned),sv=total(a,e=>e.sold);return `<div style="padding:13px 0;border-bottom:1px solid var(--line)"><div style="display:flex;justify-content:space-between;gap:8px"><b>${p}</b><span class="muted small">${sv} vendidos / ${pl} planejados</span></div><div class="bar" style="margin-top:8px"><i style="width:${pl?Math.min(100,sv/pl*100):0}%"></i></div></div>`}).join('');
+ $('historyBody').innerHTML=entries.length?entries.map(e=>`<tr><td>${e.date}</td><td>${e.shift}</td><td>${escapeHtml(e.manager)}</td><td>${e.product}</td><td>${e.planned}</td><td>${e.sold}</td><td>${money(e.sold*e.unitPrice)}</td><td><button class="btn secondary" data-del="${e.id}" style="padding:6px 9px">Excluir</button></td></tr>`).join(''):'<tr><td colspan="8" class="empty">Nenhum registro encontrado.</td></tr>';
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+$('entryForm').addEventListener('submit',ev=>{ev.preventDefault();const e={id:Date.now(),manager:$('manager').value.trim(),shift:$('shift').value,product:$('product').value,date:$('date').value,planned:Number($('planned').value),sold:Number($('sold').value),unitCost:Number($('unitCost').value),unitPrice:Number($('unitPrice').value),notes:$('notes').value.trim()};if(!e.manager)return;entries.unshift(e);save();render();ev.target.reset();$('date').value=new Date().toISOString().slice(0,10);$('planned').value=0;$('sold').value=0;$('unitCost').value=0;$('unitPrice').value=0;showPage('historico')});
+$('historyBody').addEventListener('click',ev=>{const id=ev.target.dataset.del;if(id&&confirm('Excluir este lançamento?')){entries=entries.filter(e=>String(e.id)!==id);save();render()}});
+$('exportBtn').addEventListener('click',()=>{const rows=[['Data','Turno','Gerente','Item','Planejado','Vendido','Custo unitário','Preço unitário','Observações'],...entries.map(e=>[e.date,e.shift,e.manager,e.product,e.planned,e.sold,e.unitCost,e.unitPrice,e.notes])];const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='tropa-da-turquia-registros.csv';a.click();URL.revokeObjectURL(a.href)});
+$('clearBtn').addEventListener('click',()=>{if(confirm('Tem certeza? Isso apagará todos os lançamentos salvos neste navegador.')){entries=[];save();render()}});
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));$('pageTitle').textContent=({dashboard:'Visão geral',lancamentos:'Lançamentos',turnos:'Turnos',producao:'Planejamento',financeiro:'Financeiro',historico:'Histórico',config:'Configurações'})[id]}
+$('nav').addEventListener('click',ev=>{const b=ev.target.closest('button[data-page]');if(b)showPage(b.dataset.page)});
+render();
+</script>
+</body>
+</html>
